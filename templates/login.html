@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<title>Login</title>
+{% block content %}
+
+<div class="box">
+    <h1>Login</h1>
+
+    <form action="{{ url_for('login') }}" method="post" novalidate>
+    <hr>
+      {{ form.csrf_token }}
+      <p>
+        {{ form.email.label }} <br> {{ form.email(size=30) }}
+        {% for err in form.email.errors %}
+        <span style="color:red"{{ err }}></span>
+        {% endfor %}
+      </p>
+      <p>
+        {{ form.password.label }} <br> {{ form.password(size=30) }}
+        {% for err in form.password.errors %}
+        <span style="color:red"{{ err }}></span>
+        {% endfor %}
+      </p>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for msg in messages %}
+              <p style="color:red">{{msg}}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+      <br> {{ form.submit(size=5) }}
+    <hr>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p style="color:green">{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <h1>Welcome to your Home Page: {{current_user.name}} </h1>
+
+{% endblock %}
